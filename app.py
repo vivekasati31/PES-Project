@@ -1,17 +1,25 @@
 import os
 import streamlit as st
 from PIL import Image
+import gdown
 
 from inference import PneumoniaPredictor
 
-
 DEFAULT_MODEL_PATH = os.path.join("models", "best_vit.pth")
-
 
 st.set_page_config(page_title="Pneumonia Predictor", page_icon="🫁", layout="centered")
 
 st.title("Chest X-ray Pneumonia Predictor")
 st.write("Use Step 1 to load a trained model, then Step 2 to upload an X-ray image.")
+
+# ✅ Auto download model from Google Drive
+FILE_ID = "1bWmuk2GTV3LxQ6JUVs9OE5F36x_vBFZ7"
+MODEL_URL = f"https://drive.google.com/uc?id={FILE_ID}"
+
+if not os.path.exists(DEFAULT_MODEL_PATH):
+    os.makedirs("models", exist_ok=True)
+    with st.spinner("Downloading model from Google Drive... ⏳"):
+        gdown.download(MODEL_URL, DEFAULT_MODEL_PATH, quiet=False)
 
 with st.sidebar:
     st.header("Model Settings")
@@ -37,13 +45,10 @@ if model_ready:
     st.success(f"Model found: {effective_model_path}")
 else:
     st.warning(f"Model file not found at: {effective_model_path}")
-    st.info("Upload a .pth/.pt model in the sidebar, or train and save your model to this path.")
-
 
 @st.cache_resource
 def load_predictor(path: str, th: float) -> PneumoniaPredictor:
     return PneumoniaPredictor(model_path=path, threshold=th)
-
 
 predictor = None
 if model_ready:
