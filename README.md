@@ -3,7 +3,8 @@
 A Deep Learning-based web application for detecting Pneumonia from Chest X-ray images using a Vision Transformer (ViT) model and Streamlit.
 ## 📸 Application Screenshot
 
-![Application Screenshot](screenshots/app_outpu1t.png)
+![Application Screenshot](screenshots/app_output1.png)
+![Application Screenshot](screenshots/app_output2.png)
 ---
 
 ## Project Overview
