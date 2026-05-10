@@ -1,7 +1,9 @@
 # 🫁 Chest X-ray Pneumonia Predictor
 
 A Deep Learning-based web application for detecting Pneumonia from Chest X-ray images using a Vision Transformer (ViT) model and Streamlit.
+## 📸 Application Screenshot
 
+![Application Screenshot](screenshots/app_output.png)
 ---
 
 ## Project Overview
